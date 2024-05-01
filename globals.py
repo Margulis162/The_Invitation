@@ -1,8 +1,11 @@
 import timer
 import threading
+import json 
 
 
 # constants
+
+
 class Room:
     """suppose to replace you_see and rooms"""
 
@@ -11,6 +14,26 @@ class Room:
         self.description = description  # suppose to replace you_see 
         self.directions = directions
         self.items = items
+
+def data_extractor():
+    """extracts data from json file and turns em into python dict"""
+    with open('rooms.json', 'r') as f:
+        raw_data = f.read()
+        data = json.loads(raw_data)
+        return data
+
+def rooms_populator(rooms):
+    """populates roomz with room objects, shall I rename it?"""
+    roomz =[]
+    for key in rooms:
+        roomz.append(Room(key, rooms[key]['description'], rooms[key]['directions'], rooms[key]['items']))
+    return roomz
+
+
+rooms_data = data_extractor()
+
+
+roomz = rooms_populator(rooms_data)
 
 
 # format strings
