@@ -32,7 +32,7 @@ status = 'You are hungry, low energy, and absolutely do not know how to fight'
 
 time_left = 5  # this one is adjusted to allow more or less time for completion
 
-current_room = ['inner dungeon']
+current_room = 'inner dungeon'
 
 # if inventory is empty
 no_items = 'You are empty handed'

@@ -17,7 +17,7 @@ def flow():
         render.screen()
         ''' entrance is the villain room, so it is special  this code is responsible for the flow
         while not in the villain room, as for right now for the movement mainly'''
-        if globals.current_room[0] != 'entrance':
+        if globals.current_room != 'entrance':
 
             take_command()
             # checks if command is unknown. I know there is a less ugly way to check it using 'any',
@@ -32,34 +32,34 @@ def flow():
             if globals.command in globals.all_commands[0]:
 
                 # handles the case when command is legit but the room does not have the direction
-                while globals.command not in globals.rooms[globals.current_room[0]][0]:
+                while globals.command not in globals.rooms[globals.current_room][0]:
                     print(globals.text_format_cntr.format(margin="", text="you can't walk through walls yet..."))
                     take_command()
 
                 # handles normal cases of movement
-                if globals.current_room[0] != 'laboratory':
-                    globals.current_room[0] = globals.rooms[globals.current_room[0]][0].get(globals.command)
+                if globals.current_room != 'laboratory':
+                    globals.current_room = globals.rooms[globals.current_room][0].get(globals.command)
                     flow()
 
                 # handles the special case of the library door being locked
-                elif globals.current_room[0] == 'laboratory':
+                elif globals.current_room == 'laboratory':
                     if globals.command == 'east':
                         if 'key' in globals.inventory:
-                            globals.current_room[0] = globals.rooms[globals.current_room[0]][0].get(globals.command)
+                            globals.current_room = globals.rooms[globals.current_room][0].get(globals.command)
                             flow()
                         else:
                             print(globals.text_format_cntr.format(margin="", text="The door to the library is locked."))
                             time.sleep(2)
                             flow()
                     else:
-                        globals.current_room[0] = globals.rooms[globals.current_room[0]][0].get(globals.command)
+                        globals.current_room = globals.rooms[globals.current_room][0].get(globals.command)
                         flow()
             # this portion is responsible for item interactions
             if globals.command in globals.all_commands[1]:
                 # energy drink interaction
                 # picks up a drink and updates status if conditions are met
                 if globals.command == 'take the drink':
-                    if globals.current_room[0] == 'outer dungeon' and 'gloves' in globals.inventory:
+                    if globals.current_room == 'outer dungeon' and 'gloves' in globals.inventory:
                         globals.status = globals.status.replace("low energy", "energized")
                         globals.you_see['outer dungeon'] = [
                             "There is a skeleton.",
@@ -67,7 +67,7 @@ def flow():
                         ]
                         flow()
                     # prints a message if the room is not right
-                    elif globals.current_room[0] != 'outer dungeon':
+                    elif globals.current_room != 'outer dungeon':
                         print(globals.text_format_cntr.format(margin="", text="There is no energy drinks here..."))
                         time.sleep(2)
                         flow()
@@ -79,7 +79,7 @@ def flow():
                 # key interaction
                 if globals.command == 'take the key':
                     # takes key updates room description and inventory
-                    if globals.current_room[0] == 'bed chambers' and 'key' not in globals.inventory:
+                    if globals.current_room == 'bed chambers' and 'key' not in globals.inventory:
                         globals.inventory.append('key')
                         globals.you_see['bed chambers'] = [
                             "The room is pretty much empty,",
@@ -106,7 +106,7 @@ def flow():
                 # gloves interactions
                 if globals.command == 'take the gloves':
                     # picks up gloves when condition is met
-                    if globals.current_room[0] == 'laboratory' and 'gloves' not in globals.inventory:
+                    if globals.current_room == 'laboratory' and 'gloves' not in globals.inventory:
                         globals.inventory.append('gloves')
                         globals.you_see['laboratory'] = [
                             "That is where the undead do their unholy research.",
@@ -131,7 +131,7 @@ def flow():
 
                 if globals.command == 'take a slice':
                     # picks up slice when condition is met
-                    if globals.current_room[0] == 'the great hall' and globals.status.find('hungry'):
+                    if globals.current_room == 'the great hall' and globals.status.find('hungry'):
                         # replace substr in status
                         globals.status = globals.status.replace('hungry', 'well-fed')
                         # update room description
@@ -151,7 +151,7 @@ def flow():
                         flow()
                 # karate guide interaction
                 else:
-                    if globals.current_room[0] == 'library' and globals.status.find("do not know how to fight"):
+                    if globals.current_room == 'library' and globals.status.find("do not know how to fight"):
                         # replace substr in status
                         globals.status = globals.status.replace("absolutely do not know how to fight",
                                                                 "know few karate kicks")
@@ -182,5 +182,5 @@ def flow():
             # time penalty for visiting civilian room
             time.sleep(10)
             # go back to main hallway
-            globals.current_room[0] = 'main hallway'
+            globals.current_room = 'main hallway'
             flow()

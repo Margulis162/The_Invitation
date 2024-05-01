@@ -8,7 +8,7 @@ def screen():
     print(globals.text_format_end.format(margin="", fill="#" * 30, text=" VwwwwV "))
     # upper bar with time left and current room
     print(globals.upper_bar.format(margin="", time=f"time before sunset {globals.time_left} min",
-                                   room=f"You are in {globals.current_room[0].upper()}"))
+                                   room=f"You are in {globals.current_room.upper()}"))
     # separation line
     print(globals.text_format_lft.format(margin="", text="_" * 70))
     # status bar indicates progress and gives clues on what needs to be done
@@ -22,7 +22,7 @@ def screen():
     # separation line
     print(globals.text_format_lft.format(margin="", text="_" * 70))
     # room description, I loop through it since some are pretty lengthy, that helps to display it nice.
-    for i in globals.you_see[globals.current_room[0]]:
+    for i in globals.you_see[globals.current_room]:
         print(globals.text_format_cntr.format(margin="", text=i))
 
     # separation line
