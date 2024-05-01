@@ -14,11 +14,12 @@ general_instructions_move = r'type a direction to move. Example: "west"'
 general_instructions_usage = r'type "take a/the" + "item name" to grab an item. Example: "take gloves"'
 
 # for checking for unknown command
-all_commands = [
-    ('east', 'west', 'north', 'south'),
-    ('take the key', 'take the gloves', 'take the karate guide', 'take the drink', 'take a slice'),
-    'help'
-]
+all_commands = {
+    "moves":
+        ('east', 'west', 'north', 'south'),
+    "items":
+        ('take the key', 'take the gloves', 'take the karate guide', 'take the drink', 'take a slice'),
+}
 
 # variables
 

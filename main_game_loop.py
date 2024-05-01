@@ -4,58 +4,68 @@ import render
 
 
 def take_command():
+    """take the user input, since we do it a lot it makes sense to have a function for it"""
     globals.command = input(globals.text_format_cntr.format(margin="" * 25, text="Enter a command: \n")).lower().strip()
     return globals.command
+
+
+def input_validation(command):
+    """checks if input is valid"""
+    while (command not in globals.all_commands['moves']) and (command not in globals.all_commands['items']):
+        print(globals.text_format_cntr.format(margin="", text="The command is unrecognized."))
+        command = take_command()
+
+
+def movement():
+    """takes care of switching rooms"""
+
+    # handles the case when room has no door in that direction
+    while globals.command not in globals.rooms[globals.current_room][0]:
+        print(globals.text_format_cntr.format(margin="", text="you can't walk through walls yet..."))
+        take_command()
+
+    # handles normal cases of movement
+    if globals.current_room != 'laboratory':
+        globals.current_room = globals.rooms[globals.current_room][0].get(globals.command)
+        flow()
+
+    # handles the special case of the library door being locked
+    elif globals.current_room == 'laboratory':
+        if globals.command == 'east':
+            if 'key' in globals.inventory:
+                globals.current_room = globals.rooms[globals.current_room][0].get(globals.command)
+                flow()
+            else:
+                print(globals.text_format_cntr.format(margin="", text="The door to the library is locked."))
+                time.sleep(2)
+                flow()
+        else:
+            globals.current_room = globals.rooms[globals.current_room][0].get(globals.command)
+            flow()
 
 
 def flow():
     """Updates the screen with current info"""
 
-    # TODO: break movement and item interactions into different func for clarity
+    # checks if there still time left
     while globals.time_left != 0:
+
         # prints the screen
         render.screen()
-        ''' entrance is the villain room, so it is special  this code is responsible for the flow
-        while not in the villain room, as for right now for the movement mainly'''
-        if globals.current_room != 'entrance':
 
+        # entrance is the villain room it has special handling
+        if globals.current_room != 'entrance':
             take_command()
-            # checks if command is unknown. I know there is a less ugly way to check it using 'any',
-            # but I need to  learn it first.
-            while ((globals.command not in globals.all_commands[0]) and (globals.command not in globals.all_commands[1])
-                   and globals.command != "help"):
-                print(globals.text_format_cntr.format(margin="", text="The command is unrecognized."
-                                                                      " Enter HELP to see the instructions."))
-                take_command()
+
+            # checks if command is unknown.
+            input_validation(globals.command)
 
             # this portion is responsible for movement
-            if globals.command in globals.all_commands[0]:
+            if globals.command in globals.all_commands['moves']:
+                movement()
 
-                # handles the case when command is legit but the room does not have the direction
-                while globals.command not in globals.rooms[globals.current_room][0]:
-                    print(globals.text_format_cntr.format(margin="", text="you can't walk through walls yet..."))
-                    take_command()
-
-                # handles normal cases of movement
-                if globals.current_room != 'laboratory':
-                    globals.current_room = globals.rooms[globals.current_room][0].get(globals.command)
-                    flow()
-
-                # handles the special case of the library door being locked
-                elif globals.current_room == 'laboratory':
-                    if globals.command == 'east':
-                        if 'key' in globals.inventory:
-                            globals.current_room = globals.rooms[globals.current_room][0].get(globals.command)
-                            flow()
-                        else:
-                            print(globals.text_format_cntr.format(margin="", text="The door to the library is locked."))
-                            time.sleep(2)
-                            flow()
-                    else:
-                        globals.current_room = globals.rooms[globals.current_room][0].get(globals.command)
-                        flow()
             # this portion is responsible for item interactions
-            if globals.command in globals.all_commands[1]:
+            if globals.command in globals.all_commands['items']:
                 # energy drink interaction
                 # picks up a drink and updates status if conditions are met
                 if globals.command == 'take the drink':
@@ -161,14 +171,6 @@ def flow():
                         print(globals.text_format_cntr.format(margin="", text="what?1"))
                         time.sleep(2)
                         flow()
-
-            # this is here to satisfy the assignment objectives, I do print instructions every render anyway
-            if globals.command in globals.all_commands[2]:
-                # instructions
-                print(globals.text_format_lft.format(margin="", text=globals.general_instructions_move))
-                print(globals.text_format_lft.format(margin="", text=globals.general_instructions_usage))
-                time.sleep(6)
-                flow()
 
             # conditions for interaction with items
 
