@@ -3,7 +3,7 @@
 # needed for time limitation
 import globals
 import intro
-import render_logic
+import main_game_loop
 
 
 def game_over():
@@ -45,7 +45,7 @@ def main():
     if intro.render():
         # renders while time is ticking
         globals.thread_timer.start()
-        render_logic.flow()
+        main_game_loop.flow()
 
         # prints the outcome of the game once time is up needs to be formatted
         # stops the timer

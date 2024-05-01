@@ -1,3 +1,6 @@
+import globals
+
+
 def render():
     """code guilty of the title screen, it also passes integer to render function to set up the timer"""
 
@@ -30,24 +33,21 @@ def render():
 
     # logo print
     for i in intro_logo:
-        print(intro_format_str.format(margin=' ', text=i))
+        print(globals.intro_format_str.format(margin=' ', text=i))
 
     # story print
     for i in intro_text:
-        print(intro_format_str.format(margin=' ', text=i))
+        print(globals.intro_format_str.format(margin=' ', text=i))
 
     # variable indicates start of the game
-    new_game = input(intro_format_str.format(margin=' ', text="Enter start or exit\n")).lower()
+    new_game = input(globals.intro_format_str.format(margin=' ', text="Enter start or exit\n")).lower()
 
     # fancy while loop to check if the input is correct
     while new_game not in ('start', 'exit'):
-        new_game = input(intro_format_str.format(margin=' ', text="Enter start or exit\n")).lower()
+        new_game = input(globals.intro_format_str.format(margin=' ', text="Enter start or exit\n")).lower()
         print(new_game)
     # if game is initiated returns true to the condition statement from which the function is called
     if new_game == 'start':
         return True
     else:
         return False
-
-
-intro_format_str = '{margin:10}{text:^100}{margin:10}'

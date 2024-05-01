@@ -8,6 +8,7 @@ text_format_lft = '{margin:25}{text:<70}{margin:25}'
 text_format_cntr = '{margin:25}{text:^70}{margin:25}'
 text_format_end = '{margin:25}{fill:30}{text:^10}{fill:30}{margin:25}'
 upper_bar = '{margin:25}{time:<35}{room:>35}'
+intro_format_str = '{margin:10}{text:^100}{margin:10}'
 
 general_instructions_move = r'type a direction to move. Example: "west"'
 general_instructions_usage = r'type "take a/the" + "item name" to grab an item. Example: "take gloves"'
