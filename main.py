@@ -70,6 +70,6 @@ better the chances are. That if we feel like it.
 7. I do not like the delay after a player tries to do something of limits like entering library without key.
 Though I feel like it is needed right now. Perhaps, if we manage to use os to reprint the screen and we add different
 colors to the screen we might be able to highlight the message somehow else?
-8.
+8. ???
 
 """
