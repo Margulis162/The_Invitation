@@ -1,7 +1,17 @@
 import timer
 import threading
 
+
 # constants
+class Room:
+    """suppose to replace you_see and rooms"""
+
+    def __init__(self, name, description, directions, items):
+        self.name = name
+        self.description = description  # suppose to replace you_see 
+        self.directions = directions
+        self.items = items
+
 
 # format strings
 text_format_lft = '{margin:25}{text:<70}{margin:25}'
