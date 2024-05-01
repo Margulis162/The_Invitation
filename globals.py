@@ -1,23 +1,58 @@
 import timer
 import threading
+import json 
+
 
 # constants
+
+
+class Room:
+    """suppose to replace you_see and rooms"""
+
+    def __init__(self, name, description, directions, items):
+        self.name = name
+        self.description = description  # suppose to replace you_see 
+        self.directions = directions
+        self.items = items
+
+def data_extractor():
+    """extracts data from json file and turns em into python dict"""
+    with open('rooms.json', 'r') as f:
+        raw_data = f.read()
+        data = json.loads(raw_data)
+        return data
+
+def rooms_populator(rooms):
+    """populates roomz with room objects, shall I rename it?"""
+    roomz =[]
+    for key in rooms:
+        roomz.append(Room(key, rooms[key]['description'], rooms[key]['directions'], rooms[key]['items']))
+    return roomz
+
+
+rooms_data = data_extractor()
+
+
+roomz = rooms_populator(rooms_data)
+
 
 # format strings
 text_format_lft = '{margin:25}{text:<70}{margin:25}'
 text_format_cntr = '{margin:25}{text:^70}{margin:25}'
 text_format_end = '{margin:25}{fill:30}{text:^10}{fill:30}{margin:25}'
 upper_bar = '{margin:25}{time:<35}{room:>35}'
+intro_format_str = '{margin:10}{text:^100}{margin:10}'
 
 general_instructions_move = r'type a direction to move. Example: "west"'
 general_instructions_usage = r'type "take a/the" + "item name" to grab an item. Example: "take gloves"'
 
 # for checking for unknown command
-all_commands = [
-    ('east', 'west', 'north', 'south'),
-    ('take the key', 'take the gloves', 'take the karate guide', 'take the drink', 'take a slice'),
-    'help'
-]
+all_commands = {
+    "moves":
+        ('east', 'west', 'north', 'south'),
+    "items":
+        ('take the key', 'take the gloves', 'take the karate guide', 'take the drink', 'take a slice'),
+}
 
 # variables
 
@@ -31,7 +66,7 @@ status = 'You are hungry, low energy, and absolutely do not know how to fight'
 
 time_left = 5  # this one is adjusted to allow more or less time for completion
 
-current_room = ['inner dungeon']
+current_room = 'inner dungeon'
 
 # if inventory is empty
 no_items = 'You are empty handed'

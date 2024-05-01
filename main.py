@@ -3,7 +3,7 @@
 # needed for time limitation
 import globals
 import intro
-import render_logic
+import main_game_loop
 
 
 def game_over():
@@ -45,7 +45,7 @@ def main():
     if intro.render():
         # renders while time is ticking
         globals.thread_timer.start()
-        render_logic.flow()
+        main_game_loop.flow()
 
         # prints the outcome of the game once time is up needs to be formatted
         # stops the timer
@@ -67,6 +67,9 @@ TODO:
 5. make class for rooms restructure data accordingly
 6. implement final battle, more conditions a player meets (well-fed, energized, knows karate)
 better the chances are. That if we feel like it.
-7. ??? 
+7. I do not like the delay after a player tries to do something of limits like entering library without key.
+Though I feel like it is needed right now. Perhaps, if we manage to use os to reprint the screen and we add different
+colors to the screen we might be able to highlight the message somehow else?
+8. ???
 
 """
