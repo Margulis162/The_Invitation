@@ -1,6 +1,7 @@
 import globals
 import time
 import render
+from dynamic_typing_func import print_dynamic_text_1_1 as dynamic
 
 
 def take_command():
@@ -161,7 +162,7 @@ def flow():
     while globals.time_left != 0:
 
         # prints the screen
-        render.screen()
+        dynamic()
 
         # entrance is the villain room it has special handling
         if globals.current_room != 'entrance':

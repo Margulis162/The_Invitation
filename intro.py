@@ -1,7 +1,9 @@
 import globals
+from render import clean_screen
 
 
 def render():
+    clean_screen()
     """code guilty of the title screen, it also passes integer to render function to set up the timer"""
 
     # format strings for introduction logo and story

@@ -1,4 +1,6 @@
 import time
+import render
+import globals
 import globals # FIXME Remove this later this is for testing purposes
 
 
@@ -33,6 +35,17 @@ def print_dynamic_text(text, print_delay=0.25, char_end="", *custom_delays):
         else:
             time.sleep(print_delay)
 
+def print_dynamic_text_1_1(print_delay=0.02):
+        # resets description on call TODO: after making the screen wider reduce the nymber of sublists to 3ish
+        globals.description = [[''], [''], [''], [''], [''], [''], [''], [''], ['']]
+        # loops through description strings eventually will be moved to the room objects
+        for i, text in enumerate(globals.you_see[globals.current_room]):
+            # slowly adds characters to the description variable and rerenders
+            for character in text:
+                globals.description[i].append(character)
+                time.sleep(print_delay)
+                render.screen()
+            
 
 # This is just an example you can use to understand how it works by running this module specifically
 if __name__ == "__main__":

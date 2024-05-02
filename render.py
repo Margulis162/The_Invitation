@@ -1,7 +1,13 @@
 import globals
+import os
+from dynamic_typing_func import print_dynamic_text_1_1 as dynamic
 
+def clean_screen():
+    os.system('cls' if os.name == 'nt' else 'clear') # checks what kind of command to apply depending on the system
 
 def screen():
+
+    clean_screen()
     """prints the screen"""
     # screen separator for better readability
     print(globals.text_format_end.format(margin="", fill="#" * 30, text="'<.\\__/.>'"))
@@ -22,8 +28,10 @@ def screen():
     # separation line
     print(globals.text_format_lft.format(margin="", text="_" * 70))
     # room description, I loop through it since some are pretty lengthy, that helps to display it nice.
-    for i in globals.you_see[globals.current_room]:
-        print(globals.text_format_cntr.format(margin="", text=i))
+    # dynamic()
+    for  i in globals.description:
+        print(globals.text_format_cntr.format(margin="", text=''.join(i)))
+        
 
     # separation line
     print(globals.text_format_lft.format(margin="", text="_" * 70))

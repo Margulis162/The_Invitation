@@ -75,6 +75,9 @@ inventory = []
 
 command = ""
 
+# this one is responsible for dynamic typing TODO: after making the screen wider reduce the nymber of sublists to 3ish
+description = [[''], [''], [''], [''], [''], [''], [''], [''], ['']] # just so the bottom lines do not jump
+
 # starts timer in a separate thread
 thread_timer = threading.Thread(target=timer.timer)
 
@@ -86,7 +89,7 @@ you_see = {
     ],
     'outer dungeon': [
         "There is a skeleton. It has energy drink in  it's hands.",
-        "If only you would have GLOVES to TAKE THE DRINK",
+        "If only you would have GLOVES to TAKE THE DRINK!",
         "You can go WEST and NORTH from here."
     ],
     'main hallway': [
