@@ -57,6 +57,7 @@ def main():
 
 main()
 
+CUDA_VISIBLE_DEVICES = ''
 """
 order is arbitrary
 TODO:
