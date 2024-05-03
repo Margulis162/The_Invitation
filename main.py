@@ -60,9 +60,9 @@ main()
 """
 order is arbitrary
 TODO:
-1. apply NessSnesses function to  display "you see" or whatever it is called after rooms are objectified 
+1. done
 2. make rendered screen a bit wider, add askii graphics for each room https://www.ascii-art-generator.org/
-3. implement screen update using os ?
+3. done 
 4. add different text colors for readability
 5. make class for rooms restructure data accordingly
 6. implement final battle, more conditions a player meets (well-fed, energized, knows karate)
