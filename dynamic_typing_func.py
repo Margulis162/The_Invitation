@@ -23,17 +23,17 @@ import globals  # FIXME Remove this later this is for testing purposes
 # Example: ("!,?.", 1) will give any explanation points, question marks, commas or periods in the string a
 # 1-second delay.
 
-def print_dynamic_text(text, print_delay=0.25, char_end="", *custom_delays):
-    for character in str(text):
-        print(character, end=char_end, flush=True)
-        # Check if the character needs to be delayed differently based on a custom delay. If not, use default timer.
-        for delayed_chars, delay_time in custom_delays:
-            # Check if any of the characters set for delay in the string match the current character
-            if character in delayed_chars:
-                time.sleep(delay_time)
-                break
-        else:
-            time.sleep(print_delay)
+# def print_dynamic_text(text, print_delay=0.25, char_end="", *custom_delays):
+#     for character in str(text):
+#         print(character, end=char_end, flush=True)
+#         # Check if the character needs to be delayed differently based on a custom delay. If not, use default timer.
+#         for delayed_chars, delay_time in custom_delays:
+#             # Check if any of the characters set for delay in the string match the current character
+#             if character in delayed_chars:
+#                 time.sleep(delay_time)
+#                 break
+#         else:
+#             time.sleep(print_delay)
 
 
 def print_dynamic_text_1_1(print_delay=0.02):
@@ -49,16 +49,16 @@ def print_dynamic_text_1_1(print_delay=0.02):
 
 
 # This is just an example you can use to understand how it works by running this module specifically
-if __name__ == "__main__":
-    dialogue = "The man walked over to the shop, pondering its contents.\n\"Egad!\" he stated oud loud.\n\n"
+# if __name__ == "__main__":
+#     dialogue = "The man walked over to the shop, pondering its contents.\n\"Egad!\" he stated oud loud.\n\n"
 
-    print_dynamic_text(globals.text_format_end.format(margin="", fill="#" * 30, text="'<.\\__/.>'"), 0.01,
-                       "", (" ", 0))  # FIXME Remove later
+#     print_dynamic_text(globals.text_format_end.format(margin="", fill="#" * 30, text="'<.\\__/.>'"), 0.01,
+#                        "", (" ", 0))  # FIXME Remove later
 
-    print_dynamic_text(globals.text_format_end.format(margin="", fill="#" * 30, text=" VwwwwV "), 0.01)
-    # FIXME Remove later
+#     print_dynamic_text(globals.text_format_end.format(margin="", fill="#" * 30, text=" VwwwwV "), 0.01)
+#     # FIXME Remove later
 
     # print_dynamic_text(dialogue, 0.04, "", ("!.?", 0.5), (",", 0.25))
     # print_dynamic_text(dialogue, 0.04, "")
 
-    input()
+    # input()

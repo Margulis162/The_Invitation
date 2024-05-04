@@ -37,10 +37,10 @@ rooms_data = data_extractor()
 roomz = rooms_populator(rooms_data)
 
 # format strings
-text_format_lft = '{margin:25}{text:<70}{margin:25}'
-text_format_cntr = '{margin:25}{text:^70}{margin:25}'
+text_format_lft = '{margin:25}{text:<100}{margin:25}'
+text_format_cntr = '{margin:25}{text:^100}{margin:25}'
 text_format_end = '{margin:25}{fill:30}{text:^10}{fill:30}{margin:25}'
-upper_bar = '{margin:25}{time:<35}{room:>35}'
+upper_bar = '{margin:25}{time:<50}{room:>50}'
 intro_format_str = '{margin:10}{text:^100}{margin:10}'
 
 general_instructions_move = r'type a direction to move. Example: "west"'
@@ -94,9 +94,8 @@ thread_timer = threading.Thread(target=timer.timer)
 
 you_see = {
     'inner dungeon': [
-        "The bars of your cage are ridiculously far apart,",
-        "it won't be a problem to squeeze out.",
-        "There is also a door on the SOUTH wall."  # can be factored out in the future.
+        "The bars of your cage are ridiculously far apart, it won't be a problem to squeeze out.",
+        "There is also a door on the SOUTH wall."  
     ],
     'outer dungeon': [
         "There is a skeleton. It has energy drink in  it's hands.",
