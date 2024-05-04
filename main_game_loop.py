@@ -7,14 +7,14 @@ from dynamic_typing_func import print_dynamic_text_1_1 as dynamic
 def take_command():
     """take the user input, since we do it a lot it makes sense to have a function for it"""
     print('\033[?25h', end="") # makes hidden cursor visible
-    globals.command = input(globals.text_format_cntr.format(margin="" * 25, text="Enter a command: \n")).lower().strip()
+    globals.command = input(globals.main_str.format(left="", center="Enter a command: \n", right="")).lower().strip()
     return globals.command
 
 
 def input_validation(command):
     """checks if input is valid"""
     while (command not in globals.all_commands['moves']) and (command not in globals.all_commands['items']):
-        print(globals.text_format_cntr.format(margin="", text="The command is unrecognized."))
+        print(globals.main_str.format(left="", center="The command is unrecognized.", right=""))
         command = take_command()
 
 
@@ -23,7 +23,7 @@ def movement():
 
     # handles the case when room has no door in that direction
     while globals.command not in globals.rooms[globals.current_room][0]:
-        print(globals.text_format_cntr.format(margin="", text="you can't walk through walls yet..."))
+        print(globals.main_str.format(left="", center="you can't walk through walls yet...", right=''))
         take_command()
 
     # handles normal cases of movement
@@ -38,7 +38,7 @@ def movement():
                 globals.current_room = globals.rooms[globals.current_room][0].get(globals.command)
                 flow()
             else:
-                print(globals.text_format_cntr.format(margin="", text="The door to the library is locked."))
+                print(globals.main_str.format(left="", center="The door to the library is locked.", right=""))
                 time.sleep(2)
                 flow()
         else:
@@ -59,12 +59,12 @@ def items_interactions():
             flow()
         # prints a message if the room is not right
         elif globals.current_room != 'outer dungeon':
-            print(globals.text_format_cntr.format(margin="", text="There are no energy drinks here..."))
+            print(globals.main_str.format(left="", center="There are no energy drinks here...", right=""))
             time.sleep(2)
             flow()
         # prints a message if gloves are not in inventory
         else:
-            print(globals.text_format_cntr.format(margin="", text="I'm not touching it barehanded..."))
+            print(globals.main_str.format(left="", center="I'm not touching it barehanded...", right=""))
             time.sleep(2)
             flow()
 
@@ -74,24 +74,22 @@ def items_interactions():
         if globals.current_room == 'bed chambers' and 'key' not in globals.inventory:
             globals.inventory.append('key')
             globals.you_see['bed chambers'] = [
-                "The room is pretty much empty,",
-                "except for the fancy coffin in the very center.",
+                "The room is pretty much empty, except for the fancy coffin in the very center.",
                 "The lid is closed for now.",
-                "After closer inspection,",
-                "You do not see anything useful.",
+                "After closer inspection, You do not see anything useful.",
                 "You can only go WEST from here."
             ]
             flow()
 
         # print error message if key not there
         elif globals.current_room != 'bed chambers' and 'key' not in globals.inventory:
-            print(globals.text_format_cntr.format(margin="", text="There is no key..."))
+            print(globals.main_str.format(left="", center="There is no key...", right=""))
             time.sleep(2)
             flow()
 
         # prints error if key is already in inventory
         else:
-            print(globals.text_format_cntr.format(margin="", text="You have it already..."))
+            print(globals.main_str.format(left="", center="You have it already...", right=''))
             time.sleep(2)
             flow()
 
@@ -102,8 +100,7 @@ def items_interactions():
             globals.inventory.append('gloves')
             globals.you_see['laboratory'] = [
                 "That is where the undead do their unholy research.",
-                "Walls are covered with jars,",
-                "containing some weird creatures.",
+                "Walls are covered with jars, containing some weird creatures.",
                 "Some of them are staring at you.",
                 "You can only go EAST and SOUTH."
             ]
@@ -111,13 +108,13 @@ def items_interactions():
 
         # error on attempt to pick up gloves in a wrong room
         elif globals.current_room != 'laboratory' and 'gloves' not in globals.inventory:
-            print(globals.text_format_cntr.format(margin="", text="There are no gloves..."))
+            print(globals.main_str.format(left="", center="There are no gloves...", right=""))
             time.sleep(2)
             flow()
 
         # error when you already have gloves
         else:
-            print(globals.text_format_cntr.format(margin="", text="You have them already..."))
+            print(globals.main_str.format(left="", center="You have them already...", right=""))
             time.sleep(2)
             flow()
 
@@ -130,16 +127,14 @@ def items_interactions():
             # update room description
             globals.you_see['the great hall'] = [
                 "That's likely where the 'party' is suppose to be held.",
-                "The hall is huge and not well maintained.",
-                "Dust, spiderweb, and blood stains are everywhere.",
-                "You see a pizza box in the corner.",
-                "But you are not hungry.",
+                "The hall is huge and not well maintained. Dust, spiderweb, and blood stains are everywhere.",
+                "You see a pizza box in the corner. But you are not hungry.",
                 "You can go EAST and NORTH from here."
             ]
             flow()
         # error when you already ate
         else:
-            print(globals.text_format_cntr.format(margin="", text="What?"))
+            print(globals.main_str.format(left="", center="What?", right=""))
             time.sleep(2)
             flow()
     # karate guide interaction
@@ -151,7 +146,6 @@ def items_interactions():
             flow()
             # takes care of different scenarios
         if not globals.victory and globals.time_left > 0:
-            print(globals.text_format_cntr.format(margin="", text="what?1"))
             time.sleep(2)
             flow()
 

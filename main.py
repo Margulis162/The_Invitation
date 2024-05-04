@@ -20,9 +20,10 @@ def game_over():
         r" |___/                                           "
     )
     for i in msg:
-        print(globals.text_format_cntr.format(margin="", text=i))
-    print(globals.text_format_cntr.format(margin="", text=""))
-    print(globals.text_format_cntr.format(margin="", text="the vampire has awaken"))
+        print(globals.main_str.format(left="", center=i), right="")
+    print(globals.main_str.format(left="", center="", right=""))
+    print(globals.main_str.format(left="", center="The vampire has awaken", right=""))
+   
 
 
 def win():
@@ -36,9 +37,9 @@ def win():
         r"  \_/  \___/ \___/   \/  \/ \___/\_| \_/ (_)"
     )
     for i in msg:
-        print(globals.text_format_cntr.format(margin="", text=i))
-    print(globals.text_format_cntr.format(margin="", text=""))
-    print(globals.text_format_cntr.format(margin="", text="you have escaped!"))
+        print(globals.main_str.format(left="", center=i), right="")
+    print(globals.main_str.format(left="", center="", right=""))
+    print(globals.main_str.format(left="", center="You have escaped!", right=""))
 
 
 def main():
@@ -55,7 +56,7 @@ def main():
         win() if globals.victory else game_over()
 
     else:
-        print(globals.text_format_cntr.format(margin='', text="Bye!"))
+        print(globals.main_str.format(left='', center="Bye!", right=''))
 
 
 main()

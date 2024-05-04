@@ -1,7 +1,9 @@
 import timer
+# to keep timer in separate
 import threading
 import json
-
+# to get terminal size
+import shutil
 
 # constants
 
@@ -36,18 +38,16 @@ rooms_data = data_extractor()
 
 roomz = rooms_populator(rooms_data)
 
-# format strings
-text_format_lft = '{margin:20}{text:<110}{margin:20}'
-text_format_cntr = '{margin:20}{text:^110}{margin:20}'
-text_format_end = '{margin:20}{fill:30}{text:^10}{fill:30}{margin:20}'
-upper_bar = '{margin:20}{time:<55}{room:>55}'
-intro_format_str = '{margin:10}{text:^100}{margin:10}'
+# formating
+
+screen_len = shutil.get_terminal_size().columns
+main_str = '{left:<30}{center:^140}{right:>30}'.center((screen_len - 100) // 2)
+main_str_long_sides = '{left:<80}{center:^40}{right:>80}'.center((screen_len - 100) // 2)
 
 general_instructions_move = r'type a direction to move. Example: "west"'
 general_instructions_usage = r'type "take a/the" + "item name" to grab an item. Example: "take gloves"'
 
 # Typing speed types:
-# TODO: (From NESS) Hey Mark, if you don't like this idea you can remove it
 text_speeds = {"fast": 0.02,
                "medium": 0.04,
                "slow": 0.06
@@ -62,7 +62,6 @@ all_commands = {
 }
 
 # variables
-
 victory = False
 
 # status is also a condition for victory
@@ -76,7 +75,6 @@ time_left = 5  # this one is adjusted to allow more or less time for completion
 current_room = 'inner dungeon'
 
 # Indicates the player's selected typing speed. It is set to medium by default.
-# TODO: (From NESS) Hey Mark, if you don't like this idea you can remove it
 selected_text_speed = None
 
 # if inventory is empty

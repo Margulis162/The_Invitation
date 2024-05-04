@@ -7,44 +7,51 @@ def clean_screen():
 
 def hide_cursore():
     print('\033[?25l', end="")
+    
 def screen():
-
-    clean_screen()
     """prints the screen"""
+    clean_screen()
+    hide_cursore()
     # screen separator for better readability
-    print('\033[?25l', end="")
-    print(globals.text_format_end.format(margin="", fill="#" * 50, text="'<.\\__/.>'"))
-    print(globals.text_format_end.format(margin="", fill="#" * 50, text=" VwwwwV "))
+    print(globals.main_str.format(left="#" * 30, center="#" * 140, right="#" * 30))
+    print(globals.main_str.format(left=" " * 30, center="#" * 140, right=" " * 30))
     
     # upper bar with time left and current room
-    print(globals.upper_bar.format(margin="", time=f"time before sunset {globals.time_left} min",
-                                   room=f"You are in {globals.current_room.upper()}"))
+    print(globals.main_str.format(left=f"time before sunset {globals.time_left} min",
+                                    center=" " * 140,
+                                    right=f"You are in {globals.current_room.upper()}"))
    
     # separation line
-    print(globals.text_format_lft.format(margin="", text="_" * 110))
+    print(globals.main_str.format(left="_" * 30, center = "_" * 140, right = "_" * 30 ))
     
     # status bar indicates progress and gives clues on what needs to be done
-    print(globals.text_format_lft.format(margin="", text=globals.status))
+    print(globals.main_str.format(left="status:", center = globals.status, right = "" ))
+
+     # separation line
+    print(globals.main_str.format(left="_" * 30, center = "_" * 140, right = "_" * 30 ))
    
     # prints inventory or its lack
     if len(globals.inventory) == 0:
-        print(globals.text_format_lft.format(margin="", text=globals.no_items))
+        print(globals.main_str.format(left="You have:", center ="You are empty handed", right = "" ))
     else:
-        print(globals.text_format_lft.format(margin="", text="You have: " + ', '.join(globals.inventory)))
+        print(globals.main_str.format(left="You have:", center = ''.join(globals.inventory), right = "" ))
+
     # separation line
-    print(globals.text_format_lft.format(margin="", text="_" * 110))
+    print(globals.main_str.format(left="_" * 30, center = "_" * 140, right = "_" * 30 ))
+    print(globals.main_str.format(left=" " * 30, center = " " * 140, right = " " * 30 ))
     # room description, I loop through it since some are pretty lengthy, that helps to display it nice.
     # dynamic()
     for  i in globals.description:
-        print(globals.text_format_cntr.format(margin="", text=''.join(i)))
+        print(globals.main_str.format( left='', center=''.join(i), right=''))
       
         
 
     # separation line
-    print(globals.text_format_lft.format(margin="", text="_" * 110))
+    print(globals.main_str.format(left="_" * 30, center = "_" * 140, right = "_" * 30 ))
+    print(globals.main_str.format(left=" " * 30, center = " " * 140, right = " " * 30 ))
     # instructions
-    print(globals.text_format_lft.format(margin="", text=globals.general_instructions_move))
-    print(globals.text_format_lft.format(margin="", text=globals.general_instructions_usage))
+    print(globals.main_str_long_sides.format(left=globals.general_instructions_move, center ="", right=globals.general_instructions_usage))
+
     # screen separator for better readability
     # separation line
-    print(globals.text_format_lft.format(margin="", text="_" * 110))
+    print(globals.main_str.format(left="_" * 30, center = "_" * 140, right = "_" * 30 ))

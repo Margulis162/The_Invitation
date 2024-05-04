@@ -6,17 +6,19 @@ def establish_text_speed(speed_dictionary, text_orientation):
     # Get a list of all possible speeds
     possible_speeds = list(speed_dictionary.keys())
 
-    print(text_orientation.format(margin=' ', text="What is your preferred typing speed? Possible types:"))
+    print(text_orientation.format(left='', center="What is your preferred typing speed? Possible types:", right=''))
 
     # Receive user input for the desired text speed
-    text_speed_input = (input(text_orientation.format(margin=' ', text=", ".join(possible_speeds) + "\n"))
+    text_speed_input = (input(text_orientation.format(left='', center=", ".join(possible_speeds) + "\n", right=''))
                         .lower())
 
     # Loop until the player enters a proper typing speed
     while text_speed_input not in possible_speeds:
-        print(text_orientation.format(margin=' ', text="Incorrect input. What is your preferred typing speed? "
-                                                       "Possible types:\n"))
-        text_speed_input = (input(text_orientation.format(margin=' ', text=", ".join(possible_speeds) + "\n"))
+        print(text_orientation.format(left='', center="Incorrect input. What is your preferred typing speed? "
+                                                       "Possible types:\n",
+                                                       right=''))
+        text_speed_input = (input(text_orientation.format(left='', center=", ".join(possible_speeds) + "\n",
+                                                          right=''))
                             .lower())
 
     return text_speed_input
@@ -55,24 +57,27 @@ def render():
 
     # logo print
     for i in intro_logo:
-        print(globals.intro_format_str.format(margin=' ', text=i))
+        print(globals.main_str.format(left='', center=i, right=''))
 
     # story print
     for i in intro_text:
-        print(globals.intro_format_str.format(margin=' ', text=i))
+        print(globals.main_str.format(left='', center=i, right=''))
 
+  
+
+ 
     # variable indicates start of the game
-    new_game = input(globals.intro_format_str.format(margin=' ', text="Enter start or exit\n")).lower()
+    new_game = input(globals.main_str.format(left='', center="Enter start or exit\n", right='')).lower()
+    
 
     # fancy while loop to check if the input is correct
     while new_game not in ('start', 'exit'):
-        new_game = input(globals.intro_format_str.format(margin=' ', text="Enter start or exit\n")).lower()
-        print(new_game)
+        new_game = input(globals.main_str.format(left='', center="Enter start or exit\n", right='')).lower()
     # if game is initiated returns true to the condition statement from which the function is called
     if new_game == 'start':
         # Set the players desired text speed
         globals.selected_text_speed = globals.text_speeds[establish_text_speed(globals.text_speeds,
-                                                                               globals.intro_format_str)]
+                                                                               globals.main_str)]
 
         return True
 
