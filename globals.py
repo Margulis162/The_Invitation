@@ -109,11 +109,11 @@ you_see = {
         "You can go all directions from here."
     ],
     'the great hall': [
-        "That's likely where the 'party' is suppose to be held.",
-        "The hall is huge and not well maintained.",
-        "Dust, spiderweb, and blood stains are everywhere.",
-        "You see a pizza box in the corner.",
-        "You are hungry, so take a TAKE A SLICE.",
+        "This hall is likely where the 'party' is supposed to be held.",
+        "The room is quite spacious, but poorly maintained.",
+        "Dust, spiderwebs and bloodstains are scattered everywhere.",
+        "In the corner, you notice a pizza box.",
+        "You're quite hungry, so why not TAKE A SLICE?",
         "You can go EAST and NORTH from here."
     ],
     'bed chambers': [
