@@ -45,13 +45,12 @@ def render():
     )
 
     intro_text = (
-        'You have been invited to a party… ',
-        'It turned out to be a snack, because the host is a bloody Vampire.',
+        'You have been invited to a dinner party… ',
+        'Unfortunately, the host is a bloody Vampire and you\'re the main course.',
         'Luckily, you arrived early and the master of the castle is still asleep.',
-        'His henchman locked you in the dungeon and is guarding the entrance into the castle.',
-        'You are also too thin to be stopped by bars.',
+        'His henchman has locked you in the dungeon and is guarding the entrance into the castle.',
         '',
-        'Now you have to hurry up and get out of the castle, before the party starts...'
+        'You have to hurry up and get out of the castle before the party starts...'
 
     )
 
