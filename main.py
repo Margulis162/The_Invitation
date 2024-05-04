@@ -6,6 +6,9 @@ import intro
 import main_game_loop
 
 
+
+
+
 def game_over():
     """just ascii message for game over scenario"""
     msg = (
@@ -57,7 +60,6 @@ def main():
 
 main()
 
-CUDA_VISIBLE_DEVICES = ''
 """
 order is arbitrary
 TODO:

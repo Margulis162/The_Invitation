@@ -6,6 +6,7 @@ from dynamic_typing_func import print_dynamic_text_1_1 as dynamic
 
 def take_command():
     """take the user input, since we do it a lot it makes sense to have a function for it"""
+    print('\033[?25h', end="") # makes hidden cursor visible
     globals.command = input(globals.text_format_cntr.format(margin="" * 25, text="Enter a command: \n")).lower().strip()
     return globals.command
 

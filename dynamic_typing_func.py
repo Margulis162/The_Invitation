@@ -37,8 +37,8 @@ import globals  # FIXME Remove this later this is for testing purposes
 
 
 def print_dynamic_text_1_1(print_delay=0.02):
-    # resets description on call TODO: after making the screen wider reduce the nymber of sublists to 3ish
-    globals.description = [[''], [''], [''], [''], [''], [''], [''], [''], ['']]
+    # resets description on call 
+    globals.description = [[''], [''], [''], ['']]
     # loops through description strings eventually will be moved to the room objects
     for i, text in enumerate(globals.you_see[globals.current_room]):
         # slowly adds characters to the description variable and rerenders

@@ -37,10 +37,10 @@ rooms_data = data_extractor()
 roomz = rooms_populator(rooms_data)
 
 # format strings
-text_format_lft = '{margin:25}{text:<100}{margin:25}'
-text_format_cntr = '{margin:25}{text:^100}{margin:25}'
-text_format_end = '{margin:25}{fill:30}{text:^10}{fill:30}{margin:25}'
-upper_bar = '{margin:25}{time:<50}{room:>50}'
+text_format_lft = '{margin:20}{text:<110}{margin:20}'
+text_format_cntr = '{margin:20}{text:^110}{margin:20}'
+text_format_end = '{margin:20}{fill:30}{text:^10}{fill:30}{margin:20}'
+upper_bar = '{margin:20}{time:<55}{room:>55}'
 intro_format_str = '{margin:10}{text:^100}{margin:10}'
 
 general_instructions_move = r'type a direction to move. Example: "west"'
@@ -86,8 +86,8 @@ inventory = []
 
 command = ""
 
-# this one is responsible for dynamic typing TODO: after making the screen wider reduce the nymber of sublists to 3ish
-description = [[''], [''], [''], [''], [''], [''], [''], [''], ['']]  # just so the bottom lines do not jump
+# this one is responsible for dynamic typing 
+description = [[''], [''], [''], ['']]  # just so the bottom lines do not jump
 
 # starts timer in a separate thread
 thread_timer = threading.Thread(target=timer.timer)
@@ -98,54 +98,39 @@ you_see = {
         "There is also a door on the SOUTH wall."  
     ],
     'outer dungeon': [
-        "There is a skeleton. It has energy drink in  it's hands.",
-        "If only you would have GLOVES to TAKE THE DRINK!",
+        "There is a skeleton. It has energy drink in  it's hands. If only you would have GLOVES to TAKE THE DRINK!",
         "You can go WEST and NORTH from here."
     ],
     'main hallway': [
-        "Nothing to watch here except macabre paintings.",
-        "You do not have time for this.",
+        "Nothing to watch here except macabre paintings. You do not have time for this.",
         "You can go all directions from here."
     ],
     'the great hall': [
         "This hall is likely where the 'party' is supposed to be held.",
-        "The room is quite spacious, but poorly maintained.",
-        "Dust, spiderwebs and bloodstains are scattered everywhere.",
-        "In the corner, you notice a pizza box.",
-        "You're quite hungry, so why not TAKE A SLICE?",
+        "The room is quite spacious, but poorly maintained. Dust, spiderwebs and bloodstains are scattered everywhere.",
+        "In the corner, you notice a pizza box. You're quite hungry, so why not TAKE A SLICE?",
         "You can go EAST and NORTH from here."
     ],
     'bed chambers': [
-        "The room is pretty much empty,",
-        "except for the fancy coffin in the very center.",
-        "The lid is closed for now.",
-        "After closer inspection,",
-        "you see a KEY laying nearby the coffin.",
+        "The room is pretty much empty,except for the fancy coffin in the very center.",
+        "The lid is closed for now. After closer inspection, you see a KEY laying nearby the coffin.",
         "You can only go WEST from here."
     ],
     'laboratory': [
         "That is where the undead do their unholy research.",
-        "Walls are covered with jars,",
-        "containing some wierd creatures.",
-        "Some of them are staring at you.",
-        "THE GLOVES!",
+        "Walls are covered with jars, containing some wierd creatures.",
+        "Some of them are staring at you. THE GLOVES!",
         "You can only go EAST and SOUTH."
     ],
     'library': [
-        "Endless rows of books.",
-        "You are only interested in that KARATE GUIDE.",
+        "Endless rows of books. You are only interested in that KARATE GUIDE",
         "You can only go WEST from here."
     ],
     'entrance': [
-        "Escape is here!",
-        "The doors shut behind you."
-        "The henchman is guarding the exit,",
-        "and you are not ready to take on him.",
-        "He grins at you, and you go back slowly.",
-        "The doors are supper heavy",
-        "It takes you quite a few seconds to open them.",
-        "You lost precious time.",
-        "YES, THERE IS A TIME PENALTY FOR THIS ROOM!"
+        "Escape is here! The doors shut behind you. The henchman is guarding the exit,",
+        "and you are not ready to take on him. He grins at you, and you go back slowly.",
+        "The doors are supper heavy. It takes you quite a few seconds to open them.",
+        "You lost precious time. YES, THERE IS A TIME PENALTY FOR THIS ROOM!",
     ]
 }
 
