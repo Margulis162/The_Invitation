@@ -2,6 +2,26 @@ import globals
 from render import clean_screen
 
 
+def establish_text_speed(speed_dictionary, text_orientation):
+    # Get a list of all possible speeds
+    possible_speeds = list(speed_dictionary.keys())
+
+    print(text_orientation.format(margin=' ', text="What is your preferred typing speed? Possible types:"))
+
+    # Receive user input for the desired text speed
+    text_speed_input = (input(text_orientation.format(margin=' ', text=", ".join(possible_speeds) + "\n"))
+                        .lower())
+
+    # Loop until the player enters a proper typing speed
+    while text_speed_input not in possible_speeds:
+        print(text_orientation.format(margin=' ', text="Incorrect input. What is your preferred typing speed? "
+                                                       "Possible types:\n"))
+        text_speed_input = (input(text_orientation.format(margin=' ', text=", ".join(possible_speeds) + "\n"))
+                            .lower())
+
+    return text_speed_input
+
+
 def render():
     clean_screen()
     """code guilty of the title screen, it also passes integer to render function to set up the timer"""
@@ -50,6 +70,12 @@ def render():
         print(new_game)
     # if game is initiated returns true to the condition statement from which the function is called
     if new_game == 'start':
+        # Set the players desired text speed
+        globals.selected_text_speed = globals.text_speeds[establish_text_speed(globals.text_speeds,
+                                                                               globals.intro_format_str)]
+
         return True
+
+
     else:
         return False

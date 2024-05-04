@@ -1,6 +1,6 @@
 import timer
 import threading
-import json 
+import json
 
 
 # constants
@@ -15,6 +15,7 @@ class Room:
         self.directions = directions
         self.items = items
 
+
 def data_extractor():
     """extracts data from json file and turns em into python dict"""
     with open('rooms.json', 'r') as f:
@@ -22,9 +23,10 @@ def data_extractor():
         data = json.loads(raw_data)
         return data
 
+
 def rooms_populator(rooms):
     """populates roomz with room objects, shall I rename it?"""
-    roomz =[]
+    roomz = []
     for key in rooms:
         roomz.append(Room(key, rooms[key]['description'], rooms[key]['directions'], rooms[key]['items']))
     return roomz
@@ -32,9 +34,7 @@ def rooms_populator(rooms):
 
 rooms_data = data_extractor()
 
-
 roomz = rooms_populator(rooms_data)
-
 
 # format strings
 text_format_lft = '{margin:25}{text:<70}{margin:25}'
@@ -45,6 +45,13 @@ intro_format_str = '{margin:10}{text:^100}{margin:10}'
 
 general_instructions_move = r'type a direction to move. Example: "west"'
 general_instructions_usage = r'type "take a/the" + "item name" to grab an item. Example: "take gloves"'
+
+# Typing speed types:
+# TODO: (From NESS) Hey Mark, if you don't like this idea you can remove it
+text_speeds = {"fast": 0.02,
+               "medium": 0.04,
+               "slow": 0.06
+               }
 
 # for checking for unknown command
 all_commands = {
@@ -68,6 +75,10 @@ time_left = 5  # this one is adjusted to allow more or less time for completion
 
 current_room = 'inner dungeon'
 
+# Indicates the player's selected typing speed. It is set to medium by default.
+# TODO: (From NESS) Hey Mark, if you don't like this idea you can remove it
+selected_text_speed = None
+
 # if inventory is empty
 no_items = 'You are empty handed'
 
@@ -76,7 +87,7 @@ inventory = []
 command = ""
 
 # this one is responsible for dynamic typing TODO: after making the screen wider reduce the nymber of sublists to 3ish
-description = [[''], [''], [''], [''], [''], [''], [''], [''], ['']] # just so the bottom lines do not jump
+description = [[''], [''], [''], [''], [''], [''], [''], [''], ['']]  # just so the bottom lines do not jump
 
 # starts timer in a separate thread
 thread_timer = threading.Thread(target=timer.timer)

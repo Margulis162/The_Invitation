@@ -162,7 +162,7 @@ def flow():
     while globals.time_left != 0:
 
         # prints the screen
-        dynamic()
+        dynamic(globals.selected_text_speed)
 
         # entrance is the villain room it has special handling
         if globals.current_room != 'entrance':
