@@ -51,7 +51,7 @@ def items_interactions():
     # picks up a drink and updates status if conditions are met
     if globals.command == 'take the drink':
         if globals.current_room == 'outer dungeon' and 'gloves' in globals.inventory:
-            globals.status = globals.status.replace("low energy", "energized")
+            globals.status = globals.status.replace("low on energy", "energized")
             globals.you_see['outer dungeon'] = [
                 "There is a skeleton.",
                 "You can go WEST and NORTH from here."
@@ -141,7 +141,7 @@ def items_interactions():
     else:
         if globals.current_room == 'library' and globals.status.find("do not know how to fight"):
             # replace substr in status
-            globals.status = globals.status.replace("absolutely do not know how to fight",
+            globals.status = globals.status.replace("have no way to defend yourself  ",
                                                     "know few karate kicks")
             flow()
             # takes care of different scenarios
