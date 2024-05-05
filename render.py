@@ -1,6 +1,7 @@
 import globals
 import os
 from dynamic_typing_func import print_dynamic_text_1_1 as dynamic
+from askii import tuplarizator
 
 def clean_screen():
     os.system('cls' if os.name == 'nt' else 'clear') # checks what kind of command to apply depending on the system
@@ -37,6 +38,19 @@ def screen():
         print(globals.main_str.format(left="You have:", center = ''.join(globals.inventory), right = "" ))
 
     # separation line
+    print(globals.main_str.format(left="_" * 30, center = "_" * 140, right = "_" * 30 ))
+    print(globals.main_str.format(left=" " * 30, center = " " * 140, right = " " * 30 ))
+    # askii test
+
+    # FIXME the aski portion is a mess, do not recomend to tuch it until I'm done with it
+    
+    art = tuplarizator.make_tuple("askii/inner_dungeon.txt")
+    for i in art:
+        print(globals.main_askii.format(center=i))
+
+
+    
+     # separation line
     print(globals.main_str.format(left="_" * 30, center = "_" * 140, right = "_" * 30 ))
     print(globals.main_str.format(left=" " * 30, center = " " * 140, right = " " * 30 ))
     # room description, I loop through it since some are pretty lengthy, that helps to display it nice.

@@ -8,42 +8,42 @@ import shutil
 # constants
 
 
-class Room:
-    """suppose to replace you_see and rooms"""
+# class Room:
+"""suppose to replace you_see and rooms"""
 
-    def __init__(self, name, description, directions, items):
-        self.name = name
-        self.description = description  # suppose to replace you_see 
-        self.directions = directions
-        self.items = items
-
-
-def data_extractor():
-    """extracts data from json file and turns em into python dict"""
-    with open('rooms.json', 'r') as f:
-        raw_data = f.read()
-        data = json.loads(raw_data)
-        return data
+    # def __init__(self, name, description, directions, items):
+    #     self.name = name
+    #     self.description = description  # suppose to replace you_see 
+    #     self.directions = directions
+    #     self.items = items
 
 
-def rooms_populator(rooms):
-    """populates roomz with room objects, shall I rename it?"""
-    roomz = []
-    for key in rooms:
-        roomz.append(Room(key, rooms[key]['description'], rooms[key]['directions'], rooms[key]['items']))
-    return roomz
+# def data_extractor():
+"""extracts data from json file and turns em into python dict"""
+    # with open('rooms.json', 'r') as f:
+    #     raw_data = f.read()
+    #     data = json.loads(raw_data)
+    #     return data
 
 
-rooms_data = data_extractor()
+# def rooms_populator(rooms):
+"""populates roomz with room objects, shall I rename it?"""
+    # roomz = []
+    # for key in rooms:
+    #     roomz.append(Room(key, rooms[key]['description'], rooms[key]['directions'], rooms[key]['items']))
+    # return roomz
 
-roomz = rooms_populator(rooms_data)
+
+# rooms_data = data_extractor()
+
+# roomz = rooms_populator(rooms_data)
 
 # formating
 
 screen_len = shutil.get_terminal_size().columns
 main_str = '{left:<30}{center:^140}{right:>30}'.center((screen_len - 100) // 2)
 main_str_long_sides = '{left:<80}{center:^40}{right:>80}'.center((screen_len - 100) // 2)
-
+main_askii = '{center:^200}'.center((screen_len - 100) // 2)
 general_instructions_move = r'type a direction to move. Example: "west"'
 general_instructions_usage = r'type "take a/the" + "item name" to grab an item. Example: "take gloves"'
 
