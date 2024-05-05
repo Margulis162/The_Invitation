@@ -38,7 +38,7 @@ import shutil
 
 # roomz = rooms_populator(rooms_data)
 
-# formating
+# formatting
 
 screen_len = shutil.get_terminal_size().columns
 main_str = '{left:<30}{center:^140}{right:>30}'.center((screen_len - 100) // 2)
@@ -48,7 +48,7 @@ general_instructions_move = r'type a direction to move. Example: "west"'
 general_instructions_usage = r'type "take a/the" + "item name" to grab an item. Example: "take gloves"'
 
 # Typing speed types:
-text_speeds = {"fast": 0.02,
+text_speeds = {"fast": 0.01,
                "medium": 0.04,
                "slow": 0.06
                }
@@ -65,7 +65,7 @@ all_commands = {
 victory = False
 
 # status is also a condition for victory
-status = 'You are hungry, low energy, and absolutely do not know how to fight'
+status = 'You are hungry, low on energy, and have no way to defend yourself'
 
 # end game status for debugging
 # status = 'You are well-fed, energized, and know few karate kicks'
@@ -92,43 +92,47 @@ thread_timer = threading.Thread(target=timer.timer)
 
 you_see = {
     'inner dungeon': [
-        "The bars of your cage are ridiculously far apart, it won't be a problem to squeeze out.",
+        "You wake up inside of the dungeon chambers.",
+        "The bars of the chamber are ridiculously far apart. Escape will be quite simple.",
         "There is also a door on the SOUTH wall."  
     ],
     'outer dungeon': [
-        "There is a skeleton. It has energy drink in  it's hands. If only you would have GLOVES to TAKE THE DRINK!",
+        "Upon entry, you notice a skeleton holding an energy drink in it's bony hands.",
+        "It's bones look cold and slimy. You should probably look for GLOVES before trying to TAKE THE DRINK!",
         "You can go WEST and NORTH from here."
     ],
     'main hallway': [
-        "Nothing to watch here except macabre paintings. You do not have time for this.",
+        "A menagerie of macabre paintings string the walls.",
+        "Unfortunately, you have little time to absorb their meaning.",
         "You can go all directions from here."
     ],
     'the great hall': [
         "This hall is likely where the 'party' is supposed to be held.",
         "The room is quite spacious, but poorly maintained. Dust, spiderwebs and bloodstains are scattered everywhere.",
-        "In the corner, you notice a pizza box. You're quite hungry, so why not TAKE A SLICE?",
+        "In the corner, you notice a pizza box. Why not TAKE A SLICE?",
         "You can go EAST and NORTH from here."
     ],
     'bed chambers': [
-        "The room is pretty much empty,except for the fancy coffin in the very center.",
-        "The lid is closed for now. After closer inspection, you see a KEY laying nearby the coffin.",
-        "You can only go WEST from here."
+        "The chambers are disturbingly empty, save for the fancy coffin at the chamber's center.",
+        "The lid is closed for now. Upon closer inspection, you see a KEY laying beside the coffin.",
+        "You can go WEST from here."
     ],
     'laboratory': [
-        "That is where the undead do their unholy research.",
-        "Walls are covered with jars, containing some wierd creatures.",
-        "Some of them are staring at you. THE GLOVES!",
-        "You can only go EAST and SOUTH."
+        "This is where the undead do their unholy research.",
+        "The walls are covered with jars containing a variety of preserved creatures.",
+        "You feel like some of them are staring at you. You can TAKE THE GLOVES lying on one of the counter tops.",
+        "You can go EAST and SOUTH from here."
     ],
     'library': [
-        "Endless rows of books. You are only interested in that KARATE GUIDE",
-        "You can only go WEST from here."
+        "The rows of shelves loaded with knowledge feel nearly endless.",
+        "While searching through the books, you encounter the KARATE GUIDE. That could be really useful!",
+        "You can go WEST from here."
     ],
     'entrance': [
-        "Escape is here! The doors shut behind you. The henchman is guarding the exit,",
-        "and you are not ready to take on him. He grins at you, and you go back slowly.",
-        "The doors are supper heavy. It takes you quite a few seconds to open them.",
-        "You lost precious time. YES, THERE IS A TIME PENALTY FOR THIS ROOM!",
+        "While attempting to escape, the doors shut behind you. A henchman is guarding the exit",
+        "and you are not ready to take him on. He grins at you, and you go back slowly.",
+        "The doors are super heavy. It takes you many seconds to open them.",
+        "You lost a lot of extra time from this endeavor. Perhaps you should look for more items to help you.",
     ]
 }
 
