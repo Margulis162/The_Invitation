@@ -52,7 +52,7 @@ def items_interactions():
     if globals.command == 'take the drink':
         if globals.current_room == 'outer dungeon' and 'gloves' in globals.inventory:
             globals.status = globals.status.replace("low on energy", "energized")
-            globals.you_see['outer dungeon'] = [
+            globals.rooms[globals.current_room].description = [
                 "There is a skeleton.",
                 "You can go WEST and NORTH from here."
             ]
@@ -73,7 +73,7 @@ def items_interactions():
         # takes key updates room description and inventory
         if globals.current_room == 'bed chambers' and 'key' not in globals.inventory:
             globals.inventory.append('key')
-            globals.you_see['bed chambers'] = [
+            globals.rooms[globals.current_room].description  = [
                 "The room is pretty much empty, except for the fancy coffin in the very center.",
                 "The lid is closed for now.",
                 "After closer inspection, You do not see anything useful.",
@@ -98,7 +98,7 @@ def items_interactions():
         # picks up gloves when condition is met
         if globals.current_room == 'laboratory' and 'gloves' not in globals.inventory:
             globals.inventory.append('gloves')
-            globals.you_see['laboratory'] = [
+            globals.rooms[globals.current_room].description = [
                 "That is where the undead do their unholy research.",
                 "Walls are covered with jars, containing some weird creatures.",
                 "Some of them are staring at you.",
@@ -125,7 +125,7 @@ def items_interactions():
             # replace substr in status
             globals.status = globals.status.replace('hungry', 'well-fed')
             # update room description
-            globals.you_see['the great hall'] = [
+            globals.rooms[globals.current_room].description  = [
                 "That's likely where the 'party' is suppose to be held.",
                 "The hall is huge and not well maintained. Dust, spiderweb, and blood stains are everywhere.",
                 "You see a pizza box in the corner. But you are not hungry.",

@@ -40,7 +40,7 @@ def print_dynamic_text_1_1(print_delay=0.02):
     # resets description on call 
     globals.description = [[''], [''], [''], ['']]
     # loops through description strings eventually will be moved to the room objects
-    for i, text in enumerate(globals.you_see[globals.current_room]):
+    for i, text in enumerate(globals.rooms[globals.current_room].description[0] ):
         # slowly adds characters to the description variable and rerenders
         for character in text:
             globals.description[i].append(character)
