@@ -11,11 +11,12 @@ import shutil
 # class Room:
 """suppose to replace you_see and rooms"""
 
-    # def __init__(self, name, description, directions, items):
+    # def __init__(self, name, description, directions, items, map):
     #     self.name = name
     #     self.description = description  # suppose to replace you_see 
     #     self.directions = directions
     #     self.items = items
+    #     self.map = map
 
 
 # def data_extractor():
