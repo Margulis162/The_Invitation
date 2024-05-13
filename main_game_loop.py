@@ -22,31 +22,32 @@ def movement():
     """takes care of switching rooms"""
 
     # handles the case when room has no door in that direction
-    while globals.command not in globals.rooms[globals.current_room][0]:
+    while globals.command not in list(globals.current_room.directions.keys()):
         print(globals.main_str.format(left="", center="you can't walk through walls yet...", right=''))
         take_command()
 
     # handles normal cases of movement
     if globals.current_room != 'laboratory':
-        globals.current_room = globals.rooms[globals.current_room][0].get(globals.command)
+        # Changes the current room to the adjacent room based on user command
+        globals.current_room = globals.rooms[globals.current_room.directions[globals.command]]
         flow()
 
     # handles the special case of the library door being locked
     elif globals.current_room == 'laboratory':
         if globals.command == 'east':
             if 'key' in globals.inventory:
-                globals.current_room = globals.rooms[globals.current_room][0].get(globals.command)
+                globals.current_room = globals.rooms['laboratory']
                 flow()
             else:
                 print(globals.main_str.format(left="", center="The door to the library is locked.", right=""))
                 time.sleep(2)
                 flow()
         else:
-            globals.current_room = globals.rooms[globals.current_room][0].get(globals.command)
+            globals.current_room = globals.rooms[globals.current_room][0].get(globals.command)  # FIXME I don't know what room this is going to, so I didn't finish it
             flow()
 
 
-def items_interactions():
+def items_interactions():  # FIXME You will have to rework any parts of this function that call the rooms for data. Use the way I called the rooms in the movement function to guide you.
     # energy drink interaction
     # picks up a drink and updates status if conditions are met
     if globals.command == 'take the drink':

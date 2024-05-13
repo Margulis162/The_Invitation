@@ -24,23 +24,20 @@ def data_extractor():
     with open('rooms.json', 'r') as f:
         raw_data = f.read()
         data = json.loads(raw_data)
-        print(raw_data)
         return data
 
 
 def rooms_populator(rooms_data):
     """populates rooms with room objects, shall I rename it?"""
-    data = []
+    data = {}
     for key in rooms_data:
-        data.append(Room(key, rooms_data[key]['description'], rooms_data[key]['directions'], rooms_data[key]['items'], rooms_data[key]['map']))
+        data[key] = (Room(key, rooms_data[key]['description'], rooms_data[key]['directions'], rooms_data[key]['items'], rooms_data[key]['map']))
     return data
 
 
 rooms_data = data_extractor()
 
 rooms = rooms_populator(rooms_data)
-
-# print(rooms_data)
 
 # formatting
 
@@ -76,7 +73,7 @@ status = 'You are hungry, low on energy, and have no way to defend yourself'
 
 time_left = 5  # this one is adjusted to allow more or less time for completion
 
-current_room = 'inner dungeon'
+current_room = rooms['inner dungeon']
 
 # Indicates the player's selected typing speed. It is set to medium by default.
 selected_text_speed = None
@@ -92,4 +89,4 @@ command = ""
 description = [[''], [''], [''], ['']]  # just so the bottom lines do not jump
 
 # starts timer in a separate thread
-# thread_timer = threading.Thread(target=timer.timer)
+thread_timer = threading.Thread(target=timer.timer)

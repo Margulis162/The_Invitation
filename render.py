@@ -19,7 +19,7 @@ def screen():
     # upper bar with time left and current room
     print(globals.main_str.format(left=f"time before sunset {globals.time_left} min",
                                     center=" " * 140,
-                                    right=f"You are in {globals.current_room.upper()}"))
+                                    right=f"You are in {globals.current_room.name.upper()}"))
    
     # separation line
     print(globals.main_str.format(left="_" * 30, center = "_" * 140, right = "_" * 30 ))
@@ -42,7 +42,7 @@ def screen():
     # askii test
 
     
-    for i in globals.maps[globals.current_room]:
+    for i in globals.current_room.map:
         print(globals.main_askii.format(center=i))
 
 
@@ -52,7 +52,7 @@ def screen():
     print(globals.main_str.format(left=" " * 30, center = " " * 140, right = " " * 30 ))
     # room description, I loop through it since some are pretty lengthy, that helps to display it nice.
     # dynamic()
-    for  i in globals.description:
+    for i in globals.description:
         print(globals.main_str.format( left='', center=''.join(i), right=''))
       
         

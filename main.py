@@ -8,7 +8,6 @@ import main_game_loop
 
 
 
-
 def game_over():
     """just ascii message for game over scenario"""
     msg = (
