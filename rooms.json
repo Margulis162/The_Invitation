@@ -4,9 +4,9 @@
             "south": "outer dungeon"
         },
         "description": [
-            "The bars of your cage are ridiculously far apart,",
-            "it won't be a problem to squeeze out.",
-            "There is also a door on the SOUTH wall."
+            "You wake up inside of the dungeon chambers.",
+            "The bars of the chamber are ridiculously far apart. Escape will be quite simple.",
+            "There is also a door on the SOUTH wall."  
         ],
         "items": [],
         "map": [
@@ -35,8 +35,8 @@
             "west": "main hallway"
         },
         "description": [
-            "There is a skeleton. It has energy drink in  it's hands.",
-            "If only you would have GLOVES to TAKE THE DRINK",
+            "Upon entry, you notice a skeleton holding an energy drink in it's bony hands.",
+            "It's bones look cold and slimy. You should probably look for GLOVES before trying to TAKE THE DRINK!",
             "You can go WEST and NORTH from here."
         ],
         "items": [
@@ -70,8 +70,8 @@
             "east": "outer dungeon"
         },
         "description": [
-            "Nothing to watch here except macabre paintings.",
-            "You do not have time for this.",
+            "A menagerie of macabre paintings string the walls.",
+            "Unfortunately, you have little time to absorb their meaning.",
             "You can go all directions from here."
         ],
         "items": [],
@@ -101,11 +101,9 @@
             "east": "bed chambers"
         },
         "description": [
-            "That's likely where the 'party' is suppose to be held.",
-            "The hall is huge and not well maintained.",
-            "Dust, spiderweb, and blood stains are everywhere.",
-            "You see a pizza box in the corner.",
-            "You are hungry, so take a TAKE A SLICE.",
+            "This hall is likely where the 'party' is supposed to be held.",
+            "The room is quite spacious, but poorly maintained. Dust, spiderwebs and bloodstains are scattered everywhere.",
+            "In the corner, you notice a pizza box. Why not TAKE A SLICE?",
             "You can go EAST and NORTH from here."
         ],
         "items": [
@@ -137,12 +135,10 @@
             "east": "library"
         },
         "description": [
-            "That is where the undead do their unholy research.",
-            "Walls are covered with jars,",
-            "containing some wierd creatures.",
-            "Some of them are staring at you.",
-            "THE GLOVES!",
-            "You can only go EAST and SOUTH."
+            "This is where the undead do their unholy research.",
+            "The walls are covered with jars containing a variety of preserved creatures.",
+            "You feel like some of them are staring at you. You can TAKE THE GLOVES lying on one of the counter tops.",
+            "You can go EAST and SOUTH from here."
         ],
         "items": [
             "gloves"
@@ -172,12 +168,9 @@
             "west": "the great hall"
         },
         "description": [
-            "The room is pretty much empty,",
-            "except for the fancy coffin in the very center.",
-            "The lid is closed for now.",
-            "After closer inspection,",
-            "you see a KEY laying nearby the coffin.",
-            "You can only go WEST from here."
+           "The chambers are disturbingly empty, save for the fancy coffin at the chamber's center.",
+            "The lid is closed for now. Upon closer inspection, you see a KEY laying beside the coffin.",
+            "You can go WEST from here."
         ],
         "items": [
             "key"
@@ -207,9 +200,9 @@
             "west": "laboratory"
         },
         "description": [
-            "Endless rows of books.",
-            "You are only interested in that KARATE GUIDE.",
-            "You can only go WEST from here."
+            "The rows of shelves loaded with knowledge feel nearly endless.",
+            "While searching through the books, you encounter the KARATE GUIDE. That could be really useful!",
+            "You can go WEST from here."
         ],
         "items": [
             "karate guide"
@@ -237,14 +230,10 @@
     "entrance": {
         "directions": {},
         "description": [
-            "Escape is here!",
-            "The doors shut behind you.The henchman is guarding the exit,",
-            "and you are not ready to take on him.",
-            "He grins at you, and you go back slowly.",
-            "The doors are supper heavy",
-            "It takes you quite a few seconds to open them.",
-            "You lost precious time.",
-            "YES, THERE IS A TIME PENALTY FOR THIS ROOM!"
+            "While attempting to escape, the doors shut behind you. A henchman is guarding the exit",
+            "and you are not ready to take him on. He grins at you, and you go back slowly.",
+            "The doors are super heavy. It takes you many seconds to open them.",
+            "You lost a lot of extra time from this endeavor. Perhaps you should look for more items to help you."
         ],
         "items": [],
         "map": [
