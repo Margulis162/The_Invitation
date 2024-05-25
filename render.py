@@ -43,8 +43,8 @@ def screen():
 
     
     for i in globals.current_room.map:
-        print(globals.main_askii.format(center=i))
-
+        # print(globals.main_askii.format(center=i))
+        print(i)
 
     
      # separation line

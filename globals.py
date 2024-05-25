@@ -44,7 +44,8 @@ rooms = rooms_populator(rooms_data)
 screen_len = shutil.get_terminal_size().columns
 main_str = '{left:<30}{center:^140}{right:>30}'.center((screen_len - 100) // 2)
 main_str_long_sides = '{left:<80}{center:^40}{right:>80}'.center((screen_len - 100) // 2)
-main_askii = '{center:^200}'.center((screen_len - 100) // 2)
+main_askii = r'{center:^200}'.center((screen_len - 100) // 2)
+# main_askii = '{center:^200}'
 general_instructions_move = r'type a direction to move. Example: "west"'
 general_instructions_usage = r'type "take a/the" + "item name" to grab an item. Example: "take gloves"'
 
