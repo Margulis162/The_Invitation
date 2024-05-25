@@ -6,7 +6,7 @@ from dynamic_typing_func import print_dynamic_text_1_1 as dynamic
 
 def take_command():
     """take the user input, since we do it a lot it makes sense to have a function for it"""
-    print('\033[?25h', end="") # makes hidden cursor visible
+    print('\033[?25h', end="")  # makes hidden cursor visible
     globals.command = input(globals.main_str.format(left="", center="Enter a command: \n", right="")).lower().strip()
     return globals.command
 
@@ -43,7 +43,8 @@ def movement():
                 time.sleep(2)
                 flow()
         else:
-            globals.current_room = globals.rooms[globals.current_room][0].get(globals.command)  # FIXME I don't know what room this is going to, so I didn't finish it
+            globals.current_room = globals.rooms[globals.current_room][0].get(
+                globals.command)  # FIXME I don't know what room this is going to, so I didn't finish it
             flow()
 
 
@@ -74,7 +75,7 @@ def items_interactions():  # FIXME You will have to rework any parts of this fun
         # takes key updates room description and inventory
         if globals.current_room == 'bed chambers' and 'key' not in globals.inventory:
             globals.inventory.append('key')
-            globals.rooms[globals.current_room].description  = [
+            globals.rooms[globals.current_room].description = [
                 "The room is pretty much empty, except for the fancy coffin in the very center.",
                 "The lid is closed for now.",
                 "After closer inspection, You do not see anything useful.",
@@ -97,9 +98,9 @@ def items_interactions():  # FIXME You will have to rework any parts of this fun
     # gloves interactions
     if globals.command == 'take the gloves':
         # picks up gloves when condition is met
-        if globals.current_room == 'laboratory' and 'gloves' not in globals.inventory:
+        if globals.current_room.name == 'laboratory' and 'gloves' not in globals.inventory:
             globals.inventory.append('gloves')
-            globals.rooms[globals.current_room].description = [
+            globals.current_room.description = [
                 "That is where the undead do their unholy research.",
                 "Walls are covered with jars, containing some weird creatures.",
                 "Some of them are staring at you.",
@@ -108,7 +109,7 @@ def items_interactions():  # FIXME You will have to rework any parts of this fun
             flow()
 
         # error on attempt to pick up gloves in a wrong room
-        elif globals.current_room != 'laboratory' and 'gloves' not in globals.inventory:
+        elif globals.current_room.name != 'laboratory' and 'gloves' not in globals.inventory:
             print(globals.main_str.format(left="", center="There are no gloves...", right=""))
             time.sleep(2)
             flow()
@@ -122,11 +123,11 @@ def items_interactions():  # FIXME You will have to rework any parts of this fun
     # pizza slice interaction
     if globals.command == 'take a slice':
         # picks up slice when condition is met
-        if globals.current_room == 'the great hall' and globals.status.find('hungry'):
+        if globals.current_room.name == 'the great hall' and 'hungry' in globals.status:
             # replace substr in status
             globals.status = globals.status.replace('hungry', 'well-fed')
             # update room description
-            globals.rooms[globals.current_room].description  = [
+            globals.current_room.description = [
                 "That's likely where the 'party' is suppose to be held.",
                 "The hall is huge and not well maintained. Dust, spiderweb, and blood stains are everywhere.",
                 "You see a pizza box in the corner. But you are not hungry.",
@@ -140,7 +141,7 @@ def items_interactions():  # FIXME You will have to rework any parts of this fun
             flow()
     # karate guide interaction
     else:
-        if globals.current_room == 'library' and globals.status.find("do not know how to fight"):
+        if globals.current_room.name == 'library' and globals.status.find("do not know how to fight"):
             # replace substr in status
             globals.status = globals.status.replace("have no way to defend yourself",
                                                     "know few karate kicks")
