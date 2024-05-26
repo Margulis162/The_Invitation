@@ -27,24 +27,23 @@ def movement():
         take_command()
 
     # handles normal cases of movement
-    if globals.current_room != 'laboratory':
+    if globals.current_room.name != 'laboratory':
         # Changes the current room to the adjacent room based on user command
         globals.current_room = globals.rooms[globals.current_room.directions[globals.command]]
         flow()
 
     # handles the special case of the library door being locked
-    elif globals.current_room == 'laboratory':
+    elif globals.current_room.name == 'laboratory':
         if globals.command == 'east':
             if 'key' in globals.inventory:
-                globals.current_room = globals.rooms['laboratory']
+                globals.current_room = globals.rooms['library']
                 flow()
             else:
                 print(globals.main_str.format(left="", center="The door to the library is locked.", right=""))
                 time.sleep(2)
                 flow()
         else:
-            globals.current_room = globals.rooms[globals.current_room][0].get(
-                globals.command)  # FIXME I don't know what room this is going to, so I didn't finish it
+            globals.current_room = globals.rooms[globals.current_room.directions[globals.command]]
             flow()
 
 
@@ -52,15 +51,15 @@ def items_interactions():  # FIXME You will have to rework any parts of this fun
     # energy drink interaction
     # picks up a drink and updates status if conditions are met
     if globals.command == 'take the drink':
-        if globals.current_room == 'outer dungeon' and 'gloves' in globals.inventory:
+        if globals.current_room.name == 'outer dungeon' and 'gloves' in globals.inventory:
             globals.status = globals.status.replace("low on energy", "energized")
-            globals.rooms[globals.current_room].description = [
+            globals.rooms[globals.current_room.name].description = [
                 "There is a skeleton.",
                 "You can go WEST and NORTH from here."
             ]
             flow()
         # prints a message if the room is not right
-        elif globals.current_room != 'outer dungeon':
+        elif globals.current_room.name != 'outer dungeon':
             print(globals.main_str.format(left="", center="There are no energy drinks here...", right=""))
             time.sleep(2)
             flow()
@@ -73,9 +72,10 @@ def items_interactions():  # FIXME You will have to rework any parts of this fun
     # key interaction
     if globals.command == 'take the key':
         # takes key updates room description and inventory
-        if globals.current_room == 'bed chambers' and 'key' not in globals.inventory:
+        if globals.current_room.name == 'bed chambers' and 'key' not in globals.inventory:
             globals.inventory.append('key')
-            globals.rooms[globals.current_room].description = [
+            print(globals.current_room.description )
+            globals.rooms[globals.current_room.name].description = [
                 "The room is pretty much empty, except for the fancy coffin in the very center.",
                 "The lid is closed for now.",
                 "After closer inspection, You do not see anything useful.",
@@ -84,7 +84,7 @@ def items_interactions():  # FIXME You will have to rework any parts of this fun
             flow()
 
         # print error message if key not there
-        elif globals.current_room != 'bed chambers' and 'key' not in globals.inventory:
+        elif globals.current_room.name != 'bed chambers' and 'key' not in globals.inventory:
             print(globals.main_str.format(left="", center="There is no key...", right=""))
             time.sleep(2)
             flow()
@@ -100,7 +100,7 @@ def items_interactions():  # FIXME You will have to rework any parts of this fun
         # picks up gloves when condition is met
         if globals.current_room.name == 'laboratory' and 'gloves' not in globals.inventory:
             globals.inventory.append('gloves')
-            globals.current_room.description = [
+            globals.rooms[globals.current_room.name].description = [
                 "That is where the undead do their unholy research.",
                 "Walls are covered with jars, containing some weird creatures.",
                 "Some of them are staring at you.",
@@ -127,7 +127,7 @@ def items_interactions():  # FIXME You will have to rework any parts of this fun
             # replace substr in status
             globals.status = globals.status.replace('hungry', 'well-fed')
             # update room description
-            globals.current_room.description = [
+            globals.rooms[globals.current_room.name].description = [
                 "That's likely where the 'party' is suppose to be held.",
                 "The hall is huge and not well maintained. Dust, spiderweb, and blood stains are everywhere.",
                 "You see a pizza box in the corner. But you are not hungry.",
@@ -162,7 +162,7 @@ def flow():
         dynamic(globals.selected_text_speed)
 
         # entrance is the villain room it has special handling
-        if globals.current_room != 'entrance':
+        if globals.current_room.name != 'entrance':
             take_command()
 
             # checks if command is unknown.
@@ -183,8 +183,8 @@ def flow():
             flow()
             # takes care of the penalty for entering the villain room
         else:
-            # time penalty for visiting civilian room
+            # time penalty for visiting vilain room
             time.sleep(10)
             # go back to main hallway
-            globals.current_room = 'main hallway'
+            globals.current_room = globals.rooms['main hallway']
             flow()
