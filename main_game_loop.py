@@ -1,13 +1,14 @@
 import globals
 import time
 import render
+from colorama import init, Fore, Back, Style
 from dynamic_typing_func import print_dynamic_text_1_1 as dynamic
 
 
 def take_command():
     """take the user input, since we do it a lot it makes sense to have a function for it"""
     print('\033[?25h', end="")  # makes hidden cursor visible
-    globals.command = input(globals.main_str.format(left="", center="Enter a command: \n", right="")).lower().strip()
+    globals.command = input(Style.DIM + globals.main_str.format(left="", center="Enter a command: \n", right="")).lower().strip()
     return globals.command
 
 

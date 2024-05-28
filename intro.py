@@ -1,24 +1,24 @@
 import globals
 from render import clean_screen
-
+from colorama import init, Fore, Back, Style
 
 def establish_text_speed(speed_dictionary, text_orientation):
     # Get a list of all possible speeds
     possible_speeds = list(speed_dictionary.keys())
 
-    print(text_orientation.format(left='', center="What is your preferred typing speed? Possible types:", right=''))
+    print('\n' + Style.DIM + text_orientation.format(left='', center="What is your preferred typing speed? Possible types:", right='') + Style.RESET_ALL)
 
     # Receive user input for the desired text speed
-    text_speed_input = (input(text_orientation.format(left='', center=", ".join(possible_speeds) + "\n", right=''))
+    text_speed_input = (input(Style.DIM + text_orientation.format(left='', center=", ".join(possible_speeds) + "\n", right='') + Style.RESET_ALL )
                         .lower())
 
     # Loop until the player enters a proper typing speed
     while text_speed_input not in possible_speeds:
-        print(text_orientation.format(left='', center="Incorrect input. What is your preferred typing speed? "
+        print(Style.DIM + text_orientation.format(left='', center="Incorrect input. What is your preferred typing speed? "
                                                        "Possible types:\n",
-                                                       right=''))
-        text_speed_input = (input(text_orientation.format(left='', center=", ".join(possible_speeds) + "\n",
-                                                          right=''))
+                                                       right='') + Style.RESET_ALL)
+        text_speed_input = input(Style.DIM + text_orientation.format(left='', center=", ".join(possible_speeds) + "\n",
+                                                          right='' + Style.RESET_ALL)
                             .lower())
 
     return text_speed_input
@@ -56,7 +56,7 @@ def render():
 
     # logo print
     for i in intro_logo:
-        print(globals.main_str.format(left='', center=i, right=''))
+        print(Fore.RED + Style.BRIGHT + globals.main_str.format(left='', center=i, right='') + Fore.RESET + Style.RESET_ALL)
 
     # story print
     for i in intro_text:
@@ -66,12 +66,12 @@ def render():
 
  
     # variable indicates start of the game
-    new_game = input(globals.main_str.format(left='', center="Enter start or exit\n", right='')).lower()
+    new_game = input('\n' + Style.DIM + globals.main_str.format(left='', center="Enter start or exit\n", right='') + Style.RESET_ALL).lower()
     
 
     # fancy while loop to check if the input is correct
     while new_game not in ('start', 'exit'):
-        new_game = input(globals.main_str.format(left='', center="Enter start or exit\n", right='')).lower()
+        new_game = input('\n' + Style.DIM + globals.main_str.format(left='', center="Enter start or exit\n", right='') + Style.RESET_ALL).lower()
     # if game is initiated returns true to the condition statement from which the function is called
     if new_game == 'start':
         # Set the players desired text speed
